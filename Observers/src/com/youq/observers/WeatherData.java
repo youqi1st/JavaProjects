@@ -41,6 +41,8 @@ public class WeatherData implements Observable{
 		setTemperature(t);
 		setHumidity(h);
 		setPressure(p);
+		
+		measurementsChanged();
 	}
 
 	

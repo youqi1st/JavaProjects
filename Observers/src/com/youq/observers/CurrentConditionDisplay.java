@@ -24,11 +24,11 @@ public class CurrentConditionDisplay implements Observer, DisplayElement{
 
 	@Override
 	public void displayArgs() {
-		System.out.println("----Current----");
+		System.out.println("--------Current--------");
 		System.out.println(" Temperature \t" + temperature);
 		System.out.println(" Humidity \t" + humidity);
 		System.out.println(" Pressure \t" + pressure);
-		System.out.println("---------------");
+		System.out.println("-----------------------");
 	}
 
 	
