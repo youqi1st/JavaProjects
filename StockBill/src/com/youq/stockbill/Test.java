@@ -9,6 +9,7 @@ public class Test {
 //		fl.loadFilesFromPath(dir);
 		
 		RawDataParser rawDataParser = new RawDataParser(dir);
-		rawDataParser.parseRawData(dir);
+		rawDataParser.parseRawData();
 	}
+
 }

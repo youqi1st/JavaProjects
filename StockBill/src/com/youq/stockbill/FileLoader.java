@@ -29,7 +29,7 @@ public class FileLoader {
 		
 		for(int i=0; i<fileNames.length; i++){
 			System.out.println("Load file: "+fileNames[i]);
-			mFiles.add(new File(fileNames[i]));
+			mFiles.add(new File(path + fileNames[i]));
 		}
 		
 		return mFiles;
