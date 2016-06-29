@@ -66,4 +66,18 @@ public class TradeRecord {
 	public double getRemainingBalance(){
 		return mRemainingBalance;
 	}
+	
+	public String toString(){
+		return 
+				mTradingDate + "\t\t" +
+				mStockHolderCode + "\t\t" +
+				mBankCode + "\t\t" +
+				mDigestMsg + "\t\t" +
+				mTradingNum + "\t\t" +
+				mHandlingCharge + "\t\t" +
+				mStampTax + "\t\t" + 
+				mTradingAmount + "\t\t" +
+				mRemainingBalance
+				;
+	}
 }

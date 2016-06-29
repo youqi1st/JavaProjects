@@ -2,15 +2,14 @@ package com.youq.stockbill;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class RawDataParser {
 
-	private String LOG_TAG  = "RawDataParser";
+
+	
 	private String mPath = null;
 	private ArrayList<File> mRawDataFiles = new ArrayList<File>();
 	
@@ -18,6 +17,9 @@ public class RawDataParser {
 	private ArrayList<TradeRecord> mTradeRecordList = new ArrayList<TradeRecord>();
 	
 	private static final int EMPTY = 0;	
+	private final String LOG_TAG  = "RawDataParser";
+	private final String PREFIX_2015 = "2015";
+	private final String PREFIX_2016 = "2016";	
 	
 	public RawDataParser(String path){
 		mPath = path;
@@ -92,10 +94,46 @@ public class RawDataParser {
 	            
 	          //read line by line from a raw data file
 	            while ((lineStr = br.readLine()) != null) {
-	                System.out.println("line " + line + ": " + lineStr);
-	                line++;
+
 	                
-	                //TODO:
+	            	//lineStr.trim();
+	                if( lineStr.startsWith(PREFIX_2015) || lineStr.startsWith(PREFIX_2016)){
+	                	//Utils.LOG(LOG_TAG, "line " + line + ": " + lineStr);
+		                line++;
+		                
+		                //TODO: to file the trade records
+		                //TODO: 根据digestMsg判断类型
+		                int tradingType = line;
+		                
+		    			String tradingDate = Utils.subStr(lineStr, 0, 9);
+		    			String stockHolderCode = Utils.subStr(lineStr, 10, 20);
+		    			String bankCode = Utils.subStr(lineStr, 25, 31);
+		    			String digestMsg = Utils.subStr(lineStr, 36, 44);
+		    			//TODO: digestMsg长度不一致，会影响后面的判断，需要by case handle
+		    			
+		    			double tradingNum = Utils.subStrToDouble(lineStr, 0, 9);
+		    			double handlingCharge = Utils.subStrToDouble(lineStr, 0, 9);
+		    			double stampTax = Utils.subStrToDouble(lineStr, 0, 9);
+		    			double tradingAmount = Utils.subStrToDouble(lineStr, 0, 9);
+		    			double rememainingBalance  = Utils.subStrToDouble(lineStr, 0, 9);
+		                
+		                TradeRecord tr = new TradeRecord(
+		            			 tradingType,
+		            			 tradingDate,
+		            			 stockHolderCode,
+		            			 bankCode,
+		            			 digestMsg,
+		            			 tradingNum,
+		            			 handlingCharge,
+		            			 stampTax,
+		            			 tradingAmount,
+		            			 rememainingBalance);
+		                
+		                Utils.LOG(LOG_TAG, tr.toString());
+		                mTradeRecordList.add(tr);
+	                }
+	                
+	                
 	                
 	            }
 	            br.close();
