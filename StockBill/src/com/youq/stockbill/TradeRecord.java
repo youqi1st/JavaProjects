@@ -86,18 +86,25 @@ public class TradeRecord {
 		return mRemainingBalance;
 	}
 	
+//	//TODO: 根据type判断是否可以返回这个成员
+//	public double getDividenEarningStock(){
+//		return mTradingAmount;
+//	}
+	
 	public String toString(){
 		return 
 				mTradingType + "\t" +
+				mStockName + "\t|" +
 				mTradingDate + "\t" +
 				mStockHolderCode + "\t\t" +
 				mBankCode + "\t\t" +
 				mDigestMsg + "\t\t" +
 				mTradingNum + "\t\t" +
+				mTradingPrice + "\t\t" +
 				mHandlingCharge + "\t\t" +
 				mStampTax + "\t\t" + 
 				mTradingAmount + "\t\t" +
-				mRemainingBalance
+				mRemainingBalance + "\n"
 				;
 	}
 }

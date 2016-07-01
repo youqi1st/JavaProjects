@@ -3,6 +3,7 @@ package com.youq.stockbill;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class Utils {
 
@@ -31,6 +32,20 @@ public class Utils {
 			}
 	
 		return null;
+	}
+	
+	public static void printStringArray(String[] str){
+		for(String s : str){
+			System.out.print(s + " ");
+		}
+		System.out.println("");
+	}
+
+	public static void printStringArrayList(ArrayList<String> unparsedLines) {
+		for(int i = 0; i < unparsedLines.size(); ++i)
+		{
+			System.out.println("UnparsedLines: " + unparsedLines.get(i));
+		}
 	}
 	
 }
